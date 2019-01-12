@@ -28,7 +28,7 @@ spec:
         terminationMessagePolicy: File
         env:
         - name: GIT_SYNC_REPO
-          value: git@github.com:crowncodes/Organizr.git
+          value: crowncodes:b9a3659c5fd98a0cef0a6ffb66bbb2fb17b1d232
         - name: GIT_SYNC_DEST
           value: html        
         volumeMounts:
