@@ -1,0 +1,58 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: lamp
+  name: lamp
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      name: lamp
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name: lamp
+    spec:
+      containers:
+      - env:
+        - name: GIT_SYNC_REPO
+          value: git@github.com:crowncodes/Organizr.git
+        - name: GIT_SYNC_DEST
+          value: html
+        image: k8s.gcr.io/git-sync:v3.0.1
+        imagePullPolicy: IfNotPresent
+        name: git-sync
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /tmp/git
+          name: gitsrc
+      - image: us.gcr.io/crowncodes/lamp-stack:1.0.0
+        imagePullPolicy: IfNotPresent
+        name: lamp-stack
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/www
+          name: gitsrc
+      dnsPolicy: ClusterFirst
+      initContainers:
+      - command:
+        - sh
+        - -c
+        - rm -rf /tmp/git;
+        image: busybox
+        imagePullPolicy: Always
+        name: init-myservice
+        resources: {}
+      volumes:
+      - emptyDir: {}
+        name: gitsrc
