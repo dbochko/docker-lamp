@@ -41,7 +41,7 @@ spec:
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File   
         volumeMounts:
-        - mountPath: /var/www/html
+        - mountPath: /var/www
           name: gitsrc          
       dnsPolicy: ClusterFirst      
       volumes:
