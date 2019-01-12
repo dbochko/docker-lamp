@@ -19,17 +19,6 @@ spec:
       labels:
         name: lamp
     spec:
-      initContainers:
-      - command:
-        - sh
-        - -c
-        - chown -R 33:33 /tmp/git && chmod -R 777 /tmp/git
-        image: busybox
-        imagePullPolicy: Always
-        name: fix-permissions-lamp
-        resources: {}
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
       containers:
       - image: k8s.gcr.io/git-sync:v3.0.1
         imagePullPolicy: IfNotPresent
