@@ -66,6 +66,9 @@ RUN a2enmod rewrite
 RUN ln -s /usr/bin/nodejs /usr/bin/node
 RUN chmod +x /usr/sbin/run-lamp.sh
 RUN chown -R www-data:www-data /var/www/html
+RUN ln -sf /var/www/html /current/
+RUN mkdir /deploy-cache
+RUN mkdir /releases
 
 VOLUME /var/www/html
 VOLUME /var/log/httpd
