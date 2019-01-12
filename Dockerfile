@@ -66,7 +66,7 @@ RUN a2enmod rewrite
 RUN ln -s /usr/bin/nodejs /usr/bin/node
 RUN chmod +x /usr/sbin/run-lamp.sh
 RUN chown -R www-data:www-data /var/www/html
-RUN mkdir /.ssh
+
 RUN mkdir /current
 RUN mkdir /deploy-cache
 RUN mkdir /releases
@@ -79,6 +79,7 @@ VOLUME /etc/apache2
 
 RUN ln -sf /var/www/html /current/
 EXPOSE 80
+EXPOSE 22
 EXPOSE 3306
 
 CMD ["/usr/sbin/run-lamp.sh"]
