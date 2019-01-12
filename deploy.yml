@@ -28,9 +28,9 @@ spec:
         terminationMessagePolicy: File
         env:
         - name: GIT_SYNC_REPO
-          value: https://crowncodes:b9a3659c5fd98a0cef0a6ffb66bbb2fb17b1d232github.com@github.com/koding/koding.git
+          value: https://crowncodes:b9a3659c5fd98a0cef0a6ffb66bbb2fb17b1d232github.com@github.com/crowncodes/Organizr
         - name: GIT_SYNC_DEST
-          value: html        
+          value: html
         volumeMounts:
         - mountPath: /tmp/git
           name: gitsrc
@@ -41,13 +41,13 @@ spec:
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File   
         volumeMounts:
-        - mountPath: /var/tmp
+        - mountPath: /var/www/git
           name: gitsrc
         - mountPath: /var/www/html
-          name: http
+          name: httpdir
       dnsPolicy: ClusterFirst      
       volumes:
       - emptyDir: {}
         name: gitsrc
       - emptyDir: {}
-        name: http
+        name: httpdir
