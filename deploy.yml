@@ -43,16 +43,7 @@ spec:
         volumeMounts:
         - mountPath: /var/www
           name: gitsrc
-      dnsPolicy: ClusterFirst
-      initContainers:
-      - command:
-        - sh
-        - -c
-        - rm -rf /tmp/git;
-        image: busybox
-        imagePullPolicy: Always
-        name: init-myservice
-        resources: {}
+      dnsPolicy: ClusterFirst      
       volumes:
       - emptyDir: {}
         name: gitsrc
