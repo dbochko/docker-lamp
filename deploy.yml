@@ -39,7 +39,10 @@ spec:
         name: lamp-stack
         resources: {}
         terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File          
+        terminationMessagePolicy: File   
+        volumeMounts:
+        - mountPath: /var/www
+          name: gitsrc          
       dnsPolicy: ClusterFirst      
       volumes:
       - emptyDir: {}
