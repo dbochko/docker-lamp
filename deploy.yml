@@ -102,8 +102,6 @@ spec:
         volumeMounts:
         - mountPath: /bitnami/joomla
           name: joomla-data
-        - mountPath: /bitnami/apache
-          name: apache-data
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       terminationGracePeriodSeconds: 0
@@ -118,13 +116,9 @@ spec:
         resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
-    volumeMounts:
-      - name: joomla-data
-        persistentVolumeClaim:
-          claimName: joomla-joomla-joomla
-      - name: apache-data
-        emptyDir: {}
-  volumeClaimTemplates:
+updateStrategy:
+    type: RollingUpdate
+volumeClaimTemplates:
   - metadata:
       name: joomla-data
     spec:
