@@ -92,7 +92,7 @@ spec:
     spec:
       containers:
       - name: sli-dev-joomla
-        image: gcr.io/efektiv-devops/sli-dev-joomla:0.0.1
+        image: us.gcr.io/efektiv-devops/sli-dev-joomla:0.0.1
         ports:
         - containerPort: 80
         imagePullPolicy: Always
