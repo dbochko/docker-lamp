@@ -32,13 +32,6 @@ fi
 if [ ! $LOG_STDOUT ]; then
 cat << EOB
     
-    **********************************************
-    *                                            *
-    *    Docker image: fauria/lamp               *
-    *    https://github.com/fauria/docker-lamp   *
-    *                                            *
-    **********************************************
-
     SERVER SETTINGS
     ---------------
     · Redirect Apache access_log to STDOUT [LOG_STDOUT]: No.
@@ -59,7 +52,7 @@ fi
 /usr/sbin/postfix start
 
 # Run MariaDB
-/usr/bin/mysqld_safe --timezone=${DATE_TIMEZONE}&
+# /usr/bin/mysqld_safe --timezone=${DATE_TIMEZONE}&
 
 # Run Apache:
 if [ $LOG_LEVEL == 'debug' ]; then
