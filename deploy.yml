@@ -63,7 +63,7 @@ spec:
   - host: sli-dev.efektiv.site
     http:
       paths:
-      - app:
+      - backend:
           serviceName: sli-dev-joomla-service
           servicePort: 80
         path: /
