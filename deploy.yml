@@ -20,6 +20,18 @@ spec:
     app: sli-dev-joomla
 ---
 apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: sli-dev-joomla-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: api-ssd
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: v1
 data:
   GOOGLE_PROJECT_ID: ZWZla3Rpdi1kZXZvcHM=
   GOOGLE_SERVICE_ACCOUNT_JSON_KEY: ewogICJ0eXBlIjogInNlcnZpY2VfYWNjb3VudCIsCiAgInByb2plY3RfaWQiOiAiZWZla3Rpdi1kZXZvcHMiLAogICJwcml2YXRlX2tleV9pZCI6ICJmMDJiM2M0MTcxNzk4YjZlMmYwYWI0NzhiMmE4ZTczNDJlNzJlM2I4IiwKICAicHJpdmF0ZV9rZXkiOiAiLS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tXG5NSUlFdmdJQkFEQU5CZ2txaGtpRzl3MEJBUUVGQUFTQ0JLZ3dnZ1NrQWdFQUFvSUJBUUM1RXJNTzNRc0xMcHhUXG51K3YzSU9VM1lPYkIvU0pRaUUybG14ZmFGWUpwczltRlRQRUdGMFFaUm5sNmZrNmtXRnhrUmxmanZhUjVsb3JrXG5FTjdyb2hKYmJLS09yWWtqRG0weCt2b0RkcE8rWkIrRkNLSlN5RDRZNU5XcVA5NUROaXkrOWJ2bHlwZjRMWTI3XG43QkZFcVd2VkNZSWlhd0hDSjdEUjA1VW9kNWM2MGF2SzZET0NzOW5Vc1dRUm01ejlwMFRQckpzMEVOSnhnQ3RHXG5yOWIrVnJrNUtIcGpzTHpkMkVSSGEzN25wRGxtcjNPZkNadElEUWVTL0pzMWxlaWxvWDhZZStuN2xJMGxMcjN0XG5YVkp1K25HSWlhSFZIdzF3VW81YU92Z1hZTm1iQ2kzQ3N0SnFrTE8vYUt1RHNWcEkxY1FFTEhveEJZekFmbWdwXG5kR3U4R0tRdEFnTUJBQUVDZ2dFQU5rV2tDYWRMamtkb1kydTN5ancweTVVWWhtbW5idXRScmM4NTR1T3MzemQxXG5BZENxMjRqbUdPMWdRVW9aNExyaXVTc2hxZkRhY3lkdzZtbUNIYUprOUxkNlFoSGtwY21jdnV2azlqQUhLbTF0XG5DdE9aMm1ITFIveVBKY0pkK09MQm8yd25ZajhUYXAxZE0yOEtMMUxwZ3NzcmhORlJiakM2ZXdXcmQzYitlNm95XG5IcTgyWGJtNHpNbXRjdm85NEFoSVEyZVFVSE5qZ1RWdjR3RTZwdzhsMUNYMWNHVG50SlA1UTRzWCs4Uzd1QS9sXG5FRVRXYVNPLzV0TWpHQ1ZsdE5XU2UrNmxzQ3ZQTjRzVDFrazhsT3A4ei95S3hJSjhDQ1FUZm96K1BiVXh1dkIyXG5TR2o3c1JVOStuWmpZV1RHU3d5Tjh3MWswWkt2aXNkajB1OHJHbktJNXdLQmdRRGUyVXZoWDNIaTdUeHVSckVYXG5RRWw2bnVHeFgzaVFOTldYT3U4M01iaWs3Z1NVeFRxTTlaU1V0cUgwbnJTbzdidjg4NUF0V3dheGxPdkZhNnN4XG40VEQ0MnF1S0JVT3k2VEQ4czFHY2QxMURRaUhVZXFROVM3MnpxNE1VbndlWmQyQW84VzJQMjBiM1hFdGdtQ0FrXG5XTk54MnBhWWtZUFZONGM4dU5JWnN1MzRjd0tCZ1FEVW1zdm9YRWdVQjM0empzYzJOTDRaaUJxcENoTG9admtXXG5pbnRzRUxic2FpYzJiRS9qcmxNU3RiYXRrT3E0OW4wUnZQeEdOZ3VyazE0NHZIMXFIL0RsZlZnbUtyMGFYaXJ1XG56N0dqclJralpqQ3NBVCsvMmFwZzI3SDFBUDI5VXRZTCtPYnpFMDd4Z2EvT2tjL0gvOGhXT3Yya29RTUpsdnJGXG5nZGdneTRmbzN3S0JnUURPczFjQ3NIaitOM1k2QXkvM2xSV1N1eFEwWlkxNmxNY1pBdjBuZ09MM2VCNmZyMkRqXG5wbFl1cWtnR2tiNllnZ3BBVWRxRmQwejZJbHVlUG9RSVBBd2todzlkY2d5ZFFsYkJ6Y0lCRTJaYUlGa29zS2p1XG5nZlp2Vk1LOHVkVmVyNjl0eXFJSk1TYmVBYW1ZNndIRk5PN0xTQ2t2VXFtcGQxdmxJcmtlUlMwZHFRS0JnQTRqXG5OUWdBaXZKNkJSUmNuRGFvanpPWGIxNXFReE9kTlZjZ1lsQ3ZVOXFvdkc3TUNRdjAzYVZTM0JEeW9Ba29xdXh4XG5DcjJJZm9Jc1RJbXRUeEd0aWhGWW9uSDNTWmZsUnltV09oUE9RT3V2c2ZEZUxHVVBqbHJlZ1JqdnRlL1BBRmpQXG5kbHdYbnBwRXEzSXJGQXdTb0RuTHRtNHFIcytXY0pxTnBkZVljVE0xQW9HQkFJZHdzNGk5Z09qZXRkRUFjVTlEXG5OUWV1Vk1oaHUzdmZqM0xFR056S01wUzI3UmpNbmlramR5aU1lVm5UOC8yMWJrUUpDcGZGaGVqcjd5aXdUUjFTXG5ZUW40SU1wejd2ZWZXN0dmK1hqSE1ldUhONDlDUzFaN2JCc1RTK0NUc2FCVThxbDlOWFNKR2NoeVdIQ2svRjVYXG42bjBGRU9wb1AwOUYycndJa3ZybVFmVCtcbi0tLS0tRU5EIFBSSVZBVEUgS0VZLS0tLS1cbiIsCiAgImNsaWVudF9lbWFpbCI6ICI2NDYyNTA1NzM0MjgtY29tcHV0ZUBkZXZlbG9wZXIuZ3NlcnZpY2VhY2NvdW50LmNvbSIsCiAgImNsaWVudF9pZCI6ICIxMDc0NjkwNzQ0MzA0OTU0NTQ2MDAiLAogICJhdXRoX3VyaSI6ICJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20vby9vYXV0aDIvYXV0aCIsCiAgInRva2VuX3VyaSI6ICJodHRwczovL29hdXRoMi5nb29nbGVhcGlzLmNvbS90b2tlbiIsCiAgImF1dGhfcHJvdmlkZXJfeDUwOV9jZXJ0X3VybCI6ICJodHRwczovL3d3dy5nb29nbGVhcGlzLmNvbS9vYXV0aDIvdjEvY2VydHMiLAogICJjbGllbnRfeDUwOV9jZXJ0X3VybCI6ICJodHRwczovL3d3dy5nb29nbGVhcGlzLmNvbS9yb2JvdC92MS9tZXRhZGF0YS94NTA5LzY0NjI1MDU3MzQyOC1jb21wdXRlJTQwZGV2ZWxvcGVyLmdzZXJ2aWNlYWNjb3VudC5jb20iCn0KCg==
@@ -51,48 +63,71 @@ spec:
     - '*.efektiv.site'
     secretName: efektiv-wild-site-tls
 ---
-apiVersion: apps/v1beta1
-kind: StatefulSet
+apiVersion: extensions/v1beta1
+kind: Deployment
 metadata:
   labels:
-    app: sli-dev-joomla
-  name: sli-dev-joomla-workload
-  namespace: default
+    app: joomla
+    client: sli
+    lang: php
+    stack: lamp
+    tier: frontend
+  name: sli-dev-joomla
+  namespace: sli
 spec:
-  serviceName: sli-dev-joomla-service
+  progressDeadlineSeconds: 600
   replicas: 1
+  revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: sli-dev-joomla
+      app: joomla
+      client: sli
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
   template:
     metadata:
+      creationTimestamp: null
       labels:
-        app: sli-dev-joomla
+        app: joomla
+        client: sli
     spec:
       containers:
-      - name: sli-dev-joomla
-        image: gcr.io/efektiv-devops/sli-dev-joomla:0.0.1
+      - image: us.gcr.io/efektiv-devops/sli-dev-joomla:0.0.1
+        imagePullPolicy: Always
+        name: sli-dev-joomla
         ports:
         - containerPort: 80
-        imagePullPolicy: Always
+          name: http
+          protocol: TCP
         resources: {}
         terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File 
+        terminationMessagePolicy: File
         volumeMounts:
         - mountPath: /bitnami/joomla
-          name: sli-dev-data
+          name: joomla-storage
       dnsPolicy: ClusterFirst
+      initContainers:
+      - command:
+        - sh
+        - -c
+        - chown -R 1001:1001 /bitnami/joomla && chmod -R 777 /bitnami/joomla
+        image: busybox
+        imagePullPolicy: Always
+        name: fix-permissions-joomla
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /bitnami/joomla
+          name: joomla-storage
       restartPolicy: Always
-      terminationGracePeriodSeconds: 0
-  updateStrategy:
-    type: RollingUpdate
-  volumeClaimTemplates:
-  - metadata:
-      name: sli-dev-data
-    spec:
-      accessModes:
-      - ReadWriteOnce
-      resources:
-        requests:
-          storage: 30Gi
-      storageClassName: api-ssd
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 360
+      volumes:
+      - name: joomla-storage
+        persistentVolumeClaim:
+          claimName: sli-dev-joomla-pvc
