@@ -13,18 +13,6 @@ parameters:
 reclaimPolicy: "Retain"
 ---
 apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: sli-dev-joomla-pvc
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: api-ssd
-  resources:
-    requests:
-      storage: 30Gi
----
-apiVersion: v1
 kind: Service
 metadata:
   name: sli-dev-joomla-service
@@ -116,7 +104,7 @@ spec:
       - ReadWriteOnce
       resources:
         requests:
-          storage: 2Gi
+          storage: 30Gi
       storageClassName: api-ssd
     status:
       phase: Pending
