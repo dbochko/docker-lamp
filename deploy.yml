@@ -20,7 +20,7 @@ spec:
         name: lamp
     spec:
       containers:
-      - image: us.gcr.io/crowncodes/git-sync:1.0.0
+      - image: us.gcr.io/crowncodes/git-sync-sidecar:0.0.10
         imagePullPolicy: IfNotPresent
         name: git-sync
         resources: {}
