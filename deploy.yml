@@ -100,16 +100,50 @@ spec:
         app: sli-dev-joomla
     spec:
       containers:
-      - name: sli-dev-joomla
-        image: us.gcr.io/efektiv-devops/sli-dev-joomla:0.0.1
-        ports:
-        - containerPort: 80
-        imagePullPolicy: Always
+      - env:
+        - name: GIT_SYNC_REPO
+          value: https://github.com/joomla/joomla-cms.git
+        - name: GIT_SYNC_DEST
+          value: /var/www/html
+        - name: GIT_SYNC_BRANCH
+          value: staging
+        - name: GIT_SYNC_WAIT
+          value: "1000"
+        image: jlowin/git-sync
+        imagePullPolicy: IfNotPresent
+        name: git-sync
         resources: {}
         terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File 
+        terminationMessagePolicy: File
         volumeMounts:
-        - mountPath: /bitnami/joomla
+        - mountPath: /git
+          name: sli-dev-data
+      - image: us.gcr.io/efektiv-devops/sli-dev-joomla:0.0.1
+        imagePullPolicy: Always
+        name: sli-dev-joomla
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/www/html
+          name: sli-dev-data
+      dnsPolicy: ClusterFirst
+      initContainers:
+      - command:
+        - sh
+        - -c
+        - chown -R 33:33 /var/www/html && chmod -R 777 /var/www/html
+        image: busybox
+        imagePullPolicy: Always
+        name: fix-permissions-joomla
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/www/html
           name: sli-dev-data
       dnsPolicy: ClusterFirst
       restartPolicy: Always
