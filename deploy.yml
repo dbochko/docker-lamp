@@ -22,7 +22,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: sli-dev-joomla-pvc
+  name: sli-dev-pvc
 spec:
   accessModes:
     - ReadWriteOnce
@@ -129,4 +129,4 @@ spec:
       volumes:
       - name: joomla-storage
         persistentVolumeClaim:
-          claimName: sli-dev-joomla-pvc
+          claimName: sli-dev-pvc
