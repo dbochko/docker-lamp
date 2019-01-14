@@ -101,7 +101,7 @@ spec:
         terminationMessagePolicy: File 
         volumeMounts:
         - mountPath: /bitnami/joomla
-          name: joomla-data
+          name: sli-dev-data
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       terminationGracePeriodSeconds: 0
@@ -116,14 +116,18 @@ spec:
         resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
-updateStrategy:
+  updateStrategy:
     type: RollingUpdate
-volumeClaimTemplates:
+  volumeClaimTemplates:
   - metadata:
-      name: joomla-data
+      creationTimestamp: null
+      name: sli-dev-data
     spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: api-ssd
+      accessModes:
+      - ReadWriteOnce
       resources:
         requests:
           storage: 2Gi
+      storageClassName: api-ssd
+    status:
+      phase: Pending
