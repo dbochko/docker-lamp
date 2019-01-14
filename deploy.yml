@@ -73,7 +73,6 @@ metadata:
     stack: lamp
     tier: frontend
   name: sli-dev-joomla
-  namespace: sli
 spec:
   progressDeadlineSeconds: 600
   replicas: 1
